@@ -1,0 +1,101 @@
+{% extends 'navProfilPro.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 600px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+    <h1>Mon Profil :</h1><br>
+
+    <p><span style="font-weight:bold"> login : </span>{{app.user.getUsername()}}</p>
+    <p><span style="font-weight:bold"> email : </span>{{app.user.getEmail()}}</p>
+    <p><span style="font-weight:bold"> nom : </span>{{app.user.getNomPe()}}</p>
+    <p><span style="font-weight:bold"> prénom : </span>{{app.user.getPrenomPe()}}</p>
+    <p><span style="font-weight:bold"> téléphone : </span>0{{app.user.getTelephonePe()}}</p>
+    <p><span style="font-weight:bold"> Adresse : </span>{{app.user.getAdressePe()}}</p>
+    <p><span style="font-weight:bold"> code postal : </span>{{app.user.getCodePostal()}}</p>
+    <p><span style="font-weight:bold"> ville : </span>{{app.user.getNomVille()}}</p>
+    <p><span style="font-weight:bold"> n° téléphone banque : </span>0{{app.user.getTelBanque()}}</p>
+    <p><span style="font-weight:bold"> RIB : </span>{{app.user.getNumCpteBanque()}}</p><br>
+    {% set type = 'Propriétaire' %}
+    <center><p class="alert alert-info"><span style="font-weight:bold"> type : </span>{{ type }}</p></center>
+</div>
+
+<center><!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Modifier
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+
+        <form action="/valideModificationProprietaire" method="post">
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Email</label>
+    <div class="col-sm-7">
+      <input type="email" class="form-control form-control-lg" name="email" value={{app.user.getEmail()}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">nom</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="nom" value={{app.user.getNomPe()}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">prenom</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="prenom" value={{app.user.getPrenomPe()}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">téléphone :</label>
+    <div class="col-sm-7">
+      <input type="integer" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value replace(/(\..*)\./g, '$1');" class="form-control form-control-lg" name="numTel"  value=0{{app.user.getTelephonePe()}}>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">adresse</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="adresse"  value="{{app.user.getAdressePe()}}">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">code postal</label>
+    <div class="col-sm-7">
+      <input type="integer" class="form-control form-control-lg" name="codePostal"  value={{app.user.getCodePostal()}}>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">ville</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="ville"  value={{app.user.getNomVille()}}>
+    </div>
+  </div>
+      </div>
+<input type="hidden" value={{app.user.getUsername()}} name ="login">
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          <input type="submit" value="Sauver" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+  </div>
+</div></center>
+{% endblock %}

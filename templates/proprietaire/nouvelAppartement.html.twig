@@ -1,0 +1,107 @@
+{% extends 'navProprietaire.html.twig' %}
+
+{% block title %}GSB-Locnet{% endblock %}
+
+{% block body %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Nouvel appartement :</h1><br>
+
+
+
+
+<form method="post" action="/ajouterAppartement">
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label"><b>Nom</b></label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control form-control-lg" name="nom" placeholder="champs obligatoire">
+        </div>
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Rue</b></label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="rue" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Type</b></label>
+    <div class="col-sm-7">
+    <select class="form-control form-control-lg" name="type">
+      <option>STUDIO</option>
+      <option>F1</option>
+      <option>F2</option>
+      <option>F3</option>
+    </select>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Arrondissement</b></label>
+    <div class="col-sm-7">
+      <input type="integer" class="form-control form-control-lg" name="arrondissement" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Etages</b></label>
+    <div class="col-sm-7">
+       <input type="text" class="form-control form-control-lg" name="etage" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Ascenseur</b></label>
+    <div class="col-sm-7">
+     <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="ascenseur">oui
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="ascenseur">non
+  </label>
+</div>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Prix location</b></label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="prixlocation" placeholder="champs obligatoire">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Prix charges</b></label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="prixcharges" placeholder="champs obligatoire">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Préavis</b></label>
+    <div class="col-sm-7">
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="preavis">oui
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="preavis">non
+  </label>
+</div>
+    </div>
+  </div><br>
+  </div>
+  <center>
+  <input type="hidden" name="id" value="{{ app.user.getId() }}">
+  <input type="submit" value="Valider" class="btn btn-primary" name="valider">
+  </center>
+</form>
+</div><br>
+
+{% endblock %}
+

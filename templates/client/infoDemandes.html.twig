@@ -1,0 +1,36 @@
+{% extends 'navClient.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    a.blanc { color:white; }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Demandes de {{ app.user.getPrenomPe }} {{ app.user.getNomPe }}</h1>
+
+{% for demande in app.user.getDemandes() %}<br>
+{% for arrondissement in demande.getArrondissements() %}
+<p> <b>Arrondissement :</b> {{ arrondissement.getId() }}</p>
+{% endfor %}    
+<p><b>Date de Départ :</b>{{ demande.getDateArrivee | date('d/m/y') }}</p>
+<p><b>Date d'arrivée :</b>{{ demande.getDateDepart() | date('d/m/y') }}</p>
+<p><b>type  :</b>{{ demande.getType() }}</p><br>
+
+<form method="post" action="/demandeModificationDemande">
+<input type="hidden" name="id" value="{{ demande.getId() }}">
+<input type="submit" value="modifier" class="btn btn-success">
+</form><br>
+
+<form method="post" action="/supprimeDemande">
+<input type="hidden" name="id" value="{{ demande.getId() }}">
+<input type="submit" value="supprimer" class="btn btn-danger">
+</form>
+{% endfor %}
+
+</div>
+{% endblock %}

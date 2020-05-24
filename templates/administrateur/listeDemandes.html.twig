@@ -1,0 +1,54 @@
+{% extends 'navAdmin.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+    <th scope="col">Type</th>
+      <th scope="col">Client</th>
+      <th scope="col">Date arrivée</th>
+      <th scope="col">Date départ</th>
+      <th scope="col">arrondissment</th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    {% for demande in demandes %}
+    
+    <tr>
+         <td>
+            <p>{{ demande.getType() }}</p>
+        </td>
+     <td>
+            <p>{{ demande.getClient().getNomPe() }}</p>
+        </td>
+        <td>
+            <p>{{ demande.getDateArrivee()|date('d/m/yy')}}</p>
+        </td>
+        <td>
+            <p>{{ demande.getDateDepart()|date('d/m/yy')}}</p>
+        </td>
+        <td>
+        <p>
+        {% for arrondissement in demande.getArrondissements() %}
+            {{ arrondissement.getId()}} /
+        {% endfor %}</p>
+        </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table><br><br>
+
+</div>
+{% endblock %}

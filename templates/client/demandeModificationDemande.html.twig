@@ -1,0 +1,37 @@
+{% extends 'navClient.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    a.blanc { color:white; }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Modifier Demande</h1>
+
+ <form action="/valideModificationDemande" method="post">
+        <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Date d'arrivée</label>
+    <div class="col-sm-7">
+      <input type="date" class="form-control form-control-lg" name="datearr" value={{ demande.getDateArrivee() | date('d/m/y') }}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Date de Départ</label>
+    <div class="col-sm-7">
+      <input type="date" class="form-control form-control-lg" name="datedep" value={{ demande.getDateDepart | date('d/m/y') }}>
+    </div>
+  </div>
+<input type="hidden" value={{demande.getId()}} name ="id">
+
+<input type="submit" value="modifier" class="btn btn-success">
+     
+        </form>
+
+
+</div>
+{% endblock %}

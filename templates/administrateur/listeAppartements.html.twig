@@ -1,0 +1,320 @@
+{% extends 'navAdmin.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1550px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Liste des appartements :</h1><br>
+
+    <h3>Liste des Studios :</h3><br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Type</th>
+      <th scope="col">prix_location</th>
+      <th scope="col">prix_charges</th>
+      <th scope="col">rue</th>
+      <th scope="col">arrondissmnt</th>
+      <th scope="col">étage</th>
+      <th scope="col">ascenseur</th>
+      <th scope="col">préavis</th>
+      <th scope="col">infos</th>
+      <th scope="col">suppression</th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    {% for studio in studios %}
+    
+    <tr>
+        <td>
+            <p>{{ studio.getNom() }}</p>
+        </td>
+        <td>
+            <p>{{ studio.getType() }}</p>
+        </td>
+        <td>
+            <p>{{ studio.getPrixLoc() }}</p>
+        </td>
+        <td>
+            <p>{{ studio.getPrixCharges() }}</p>
+        </td>
+        <td>
+            <p>{{ studio.getRue() }}</p>
+        </td>
+        <td>
+            <p>{{ studio.getArrondissement() }}</p>
+        </td>
+        <td>
+            <p>{{ studio.getEtage() }}</p>
+        </td>
+        <td>
+            <p>{% if studio.getAscenseur() == TRUE %}
+            {% set ascenseur = 'oui' %}
+            {% elseif studio.getAscenseur() == FALSE %}
+            {% set ascenseur = 'non' %}
+            {% endif %}
+            {{ ascenseur }}</p>
+        </td>
+        <td>
+            <p>{% if studio.getPreavis() == TRUE %}
+            {% set preavis = 'oui' %}
+            {% elseif studio.getPreavis() == FALSE %}
+            {% set preavis = 'non' %}
+            {% endif %}
+            {{ preavis }}</p>
+        </td>
+        <TD><form action="/voirLesInfosAppartements" method="post">
+
+                <input type="hidden" name="id" value="{{ studio.getId() }}">
+                <input type="submit" value="info" class="btn btn-info">
+            </form></TD>
+        <TD><form action="/supprimerAppartement" method="post">
+
+                <input type="hidden" name="nom" value="{{ studio.getNom() }}">
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form></TD>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table><br><br>
+
+<h3>Liste des F1 :</h3><br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Type</th>
+      <th scope="col">prix_location</th>
+      <th scope="col">prix_charges</th>
+      <th scope="col">rue</th>
+      <th scope="col">arrondissmnt</th>
+      <th scope="col">étage</th>
+      <th scope="col">ascenseur</th>
+      <th scope="col">préavis</th>
+      <th scope="col">infos</th>
+      <th scope="col">suppression</th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    {% for f1 in f1s %}
+    
+    <tr>
+        <td>
+            <p>{{ f1.getNom() }}</p>
+        </td>
+        <td>
+            <p>{{ f1.getType() }}</p>
+        </td>
+        <td>
+            <p>{{ f1.getPrixLoc() }}</p>
+        </td>
+        <td>
+            <p>{{ f1.getPrixCharges() }}</p>
+        </td>
+        <td>
+            <p>{{ f1.getRue() }}</p>
+        </td>
+        <td>
+            <p>{{ f1.getArrondissement() }}</p>
+        </td>
+        <td>
+            <p>{{ f1.getEtage() }}</p>
+        </td>
+
+        <td>
+            <p>
+            {% if f1.getAscenseur() == TRUE %}
+            {% set ascenseur = 'oui' %}
+            {% elseif f1.getAscenseur() == FALSE %}
+            {% set ascenseur = 'non' %}
+            {% endif %}
+            {{ ascenseur }}
+            </p>
+        </td>
+        <td>
+            <p>{% if f1.getPreavis() == TRUE %}
+            {% set preavis = 'oui' %}
+            {% elseif f1.getPreavis() == FALSE %}
+            {% set preavis = 'non' %}
+            {% endif %}
+            {{ preavis }}</p>
+        </td>
+        <TD><form action="/voirLesInfosAppartements" method="post">
+
+                <input type="hidden" name="id" value="{{ f1.getId() }}">
+                <input type="submit" value="info" class="btn btn-info">
+            </form></TD>
+        <TD><form action="/supprimerAppartement" method="post">
+                <input type="hidden" name="nom" value="{{ f1.getNom() }}">
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form></TD>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table><br><br>
+
+<h3>Liste des F2 :</h3><br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Type</th>
+      <th scope="col">prix_location</th>
+      <th scope="col">prix_charges</th>
+      <th scope="col">rue</th>
+      <th scope="col">arrondissmnt</th>
+      <th scope="col">étage</th>
+      <th scope="col">ascenseur</th>
+      <th scope="col">préavis</th>
+      <th scope="col">infos</th>
+      <th scope="col">suppression</th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    {% for f2 in f2s %}
+    
+    <tr>
+        <td>
+            <p>{{ f2.getNom() }}</p>
+        </td>
+        <td>
+            <p>{{ f2.getType() }}</p>
+        </td>
+        <td>
+            <p>{{ f2.getPrixLoc() }}</p>
+        </td>
+        <td>
+            <p>{{ f2.getPrixCharges() }}</p>
+        </td>
+        <td>
+            <p>{{ f2.getRue() }}</p>
+        </td>
+        <td>
+            <p>{{ f2.getArrondissement() }}</p>
+        </td>
+        <td>
+            <p>{{ f2.getEtage() }}</p>
+        </td>
+        <td>
+            <p>{% if f2.getAscenseur() == TRUE %}
+            {% set ascenseur = 'oui' %}
+            {% elseif f2.getAscenseur() == FALSE %}
+            {% set ascenseur = 'non' %}
+            {% endif %}
+            {{ ascenseur }}</p>
+        </td>
+        <td>
+           <p>{% if f2.getPreavis() == TRUE %}
+            {% set preavis = 'oui' %}
+            {% elseif f2.getPreavis() == FALSE %}
+            {% set preavis = 'non' %}
+            {% endif %}
+            {{ preavis }}</p>
+        </td>
+       <TD><form action="/voirLesInfosAppartements" method="post">
+
+                <input type="hidden" name="id" value="{{ f2.getId() }}">
+                <input type="submit" value="info" class="btn btn-info">
+            </form></TD>
+        <TD><form action="/supprimerAppartement" method="post">
+                <input type="hidden" name="nom" value="{{ f2.getNom() }}">
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form></TD>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table><br><br>
+
+<h3>Liste des F3 :</h3><br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Type</th>
+      <th scope="col">prix_location</th>
+      <th scope="col">prix_charges</th>
+      <th scope="col">rue</th>
+      <th scope="col">arrondissmnt</th>
+      <th scope="col">étage</th>
+      <th scope="col">ascenseur</th>
+      <th scope="col">préavis</th>
+      <th scope="col">infos</th>
+      <th scope="col">suppression</th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    {% for f3 in f3s %}
+    
+    <tr>
+        <td>
+            <p>{{ f3.getNom() }}</p>
+        </td>
+        <td>
+            <p>{{ f3.getType() }}</p>
+        </td>
+        <td>
+            <p>{{ f3.getPrixLoc() }}</p>
+        </td>
+        <td>
+            <p>{{ f3.getPrixCharges() }}</p>
+        </td>
+        <td>
+            <p>{{ f3.getRue() }}</p>
+        </td>
+        <td>
+            <p>{{ f3.getArrondissement() }}</p>
+        </td>
+        <td>
+            <p>{{ f3.getEtage() }}</p>
+        </td>
+        <td>
+            <p>{% if f3.getAscenseur() == TRUE %}
+            {% set ascenseur = 'oui' %}
+            {% elseif f3.getAscenseur() == FALSE %}
+            {% set ascenseur = 'non' %}
+            {% endif %}
+            {{ ascenseur }}</p>
+        </td>
+        <td>
+            <p>{% if f3.getPreavis() == TRUE %}
+            {% set preavis = 'oui' %}
+            {% elseif f3.getPreavis() == FALSE %}
+            {% set preavis = 'non' %}
+            {% endif %}
+            {{ preavis }}</p>
+        </td>
+        <TD><form action="/voirLesInfosAppartements" method="post">
+
+                <input type="hidden" name="id" value="{{ f3.getId() }}">
+                <input type="submit" value="info" class="btn btn-info">
+            </form></TD>
+       
+       <TD><form action="/supprimerAppartement" method="post">
+                <input type="hidden" name="nom" value="{{ f3.getNom() }}">
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form></TD>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table><br><br>
+
+</div>
+{% endblock %}

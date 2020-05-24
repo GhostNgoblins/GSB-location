@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GSB-Locnet{% endblock %}
+
+{% block body %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 600px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Inscription</h1><br>
+
+<form method="post" action="/valideInscription">
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Email</label>
+    <div class="col-sm-7">
+      <input type="email" class="form-control form-control-lg" name="email" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Password</label>
+    <div class="col-sm-7">
+      <input class="form-control form-control-lg" type="password" name="motDePasse" placeholder="champs obligatoire">
+    </div>
+  </div>
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">login</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="login" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">nom</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="nom" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">prenom</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="prenom" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">date de naissance</label>
+    <div class="col-sm-7">
+      <input type="date" class="form-control form-control-lg" name="dateNaiss" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">téléphone :</label>
+    <div class="col-sm-7">
+      <input type="integer" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value replace(/(\..*)\./g, '$1');" class="form-control form-control-lg" name="numTel"  placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">RIB</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="numCptEnBanque" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">N° téléphone banque</label>
+    <div class="col-sm-7">
+      <input type="integer" class="form-control form-control-lg" name="numTelBanque" placeholder="champs obligatoire">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">adresse</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="adresse" placeholder="champs obligatoire">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">code postal</label>
+    <div class="col-sm-7">
+      <input type="integer" class="form-control form-control-lg" name="codePostal" placeholder="champs obligatoire">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">ville</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="ville" placeholder="champs obligatoire">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">type</label>
+    <div class="col-sm-7">
+      <select class="form-control" name="type">
+          <option>client</option>
+          <option>propriétaire</option>
+      </select>
+    </div>
+  </div>
+  <center><input type="submit" value="Valider" class="btn btn-primary" name="valider"/></center>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'navLocataire.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1500px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .titre {  }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Location de {{ app.user.getNomPe }} {{ app.user.getPrenomPe }}</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Type</th>
+      <th scope="col">prix_location</th>
+      <th scope="col">prix_charges</th>
+      <th scope="col">rue</th>
+      <th scope="col">arrondissment</th>
+      <th scope="col">étage</th>
+      <th scope="col">ascenseur</th>
+      <th scope="col">préavis</th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    
+    <tr>
+        <td>
+            <p>{{ app.user.getAppartements().getNom() }}</p>
+        </td>
+        <td>
+            <p>{{ app.user.getAppartements().getType() }}</p>
+        </td>
+        <td>
+            <p>{{ app.user.getAppartements().getPrixLoc() }}</p>
+        </td>
+        <td>
+            <p>{{ app.user.getAppartements().getPrixCharges() }}</p>
+        </td>
+        <td>
+            <p>{{ app.user.getAppartements().getRue() }}</p>
+        </td>
+        <td>
+            <p>{{ app.user.getAppartements().getArrondissement() }}</p>
+        </td>
+        <td>
+            <p>{{ app.user.getAppartements().getEtage() }}</p>
+        </td>
+
+        <td>
+            <p>
+            {% if app.user.getAppartements().getAscenseur() == TRUE %}
+            {% set ascenseur = 'oui' %}
+            {% elseif app.user.getAppartements().getAscenseur() == FALSE %}
+            {% set ascenseur = 'non' %}
+            {% endif %}
+            {{ ascenseur }}
+            </p>
+        </td>
+        <td>
+            <p>{% if app.user.getAppartements().getPreavis() == TRUE %}
+            {% set preavis = 'oui' %}
+            {% elseif app.user.getAppartements().getPreavis() == FALSE %}
+            {% set preavis = 'non' %}
+            {% endif %}
+            {{ preavis }}</p>
+        </td>
+        <tr>
+    <table>
+    <div class="card">
+  <div class="card-header bg-info" style="color:white;"><b>fiche Propriétaire</b></div>
+  <div class="card-body">
+            <p> <b>Nom</b> : {{ app.user.getAppartements().getProprietaire().getNomPe() }}</p>
+            <p> <b>Prenom</b> : {{ app.user.getAppartements().getProprietaire().getPrenomPe() }}</p>
+            <p> <b>Adresse</b> : {{ app.user.getAppartements().getProprietaire().getAdressePe() }}, {{ app.user.getAppartements().getProprietaire().getNomVille() }}, {{ app.user.getAppartements().getProprietaire().getCodePostal() }}</p>
+            <p> <b>Tel</b> : 0{{ app.user.getAppartements().getProprietaire().getTelephonePe() }}</p>
+            <p> <b>Email</b> : {{ app.user.getAppartements().getProprietaire().getEmail() }}</p>
+    </div>
+</div>
+</div><br>
+</div>
+
+
+{% endblock %}

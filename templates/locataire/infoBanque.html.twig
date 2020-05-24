@@ -1,0 +1,22 @@
+{% extends 'navLocataire.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1500px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .titre {  }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Banque de {{ app.user.getNomPe }} {{ app.user.getPrenomPe }}</h1><br>
+
+<p><b><i class="fas fa-phone-alt"></i> n° banque</b> : 0{{ app.user.getBanque().getTel() }} </p>
+<p><b><i class="fas fa-map-marker-alt"></i> Adresse </b> : {{ app.user.getBanque().getVille() }}, {{ app.user.getBanque().getCodePostal() }}, {{ app.user.getBanque().getRue() }}</p>
+<p><b>RIB :</b> {{ app.user.getNumCpteBanque() }}</p>
+
+
+
+{% endblock %}

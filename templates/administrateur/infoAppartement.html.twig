@@ -1,0 +1,88 @@
+{% extends 'navAdmin.html.twig' %}
+
+{% block title %}Infos Appartement{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1500px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class = "example-wrapper">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        <div class="card">
+  <div class="card-header bg-info" style="color:white;"><b>Info Appart</b></div>
+  <div class="card-body"><p> <b>Nom</b> : {{ appartement.getNom() }}</p>
+            <p> <b>Type</b> : {{ appartement.getType() }}</p>
+            <p> <b>Adresse</b> : {{ appartement.getRue() }}</p>
+            <p> <b>Arrondissement</b> : {{ appartement.getArrondissement() }}ème</p>
+            <p> <b>Prix Location</b> : {{ appartement.getPrixLoc() }} €</p>
+            <p> <b>Prix Charges</b> : {{ appartement.getPrixCharges() }} €</p>
+            <p><b>Ascenseur</b> : {% if appartement.getAscenseur() == TRUE %}
+                        {% set ascenseur = 'oui' %}
+                        {% elseif appartement.getAscenseur() == FALSE %}
+                        {% set ascenseur = 'non' %}
+                        {% endif %}
+                        {{ ascenseur }}</p>
+            <p><b>Préavis</b> : {% if appartement.getPreavis() == TRUE %}
+                        {% set preavis = 'oui' %}
+                        {% elseif appartement.getPreavis() == FALSE %}
+                        {% set preavis = 'non' %}
+                        {% endif %}
+                        {{ preavis }}</p>
+            <p> <b>Nombre d'étages</b> : {{ appartement.getEtage() }}</p>
+            <p> <b>Date libre</b> : {{ appartement.getDateLibre()|date('d/m/y') }}</p></div>
+</div>
+</div><br>
+
+ <div class="col-md-4">
+        <div class="card">
+  <div class="card-header bg-info" style="color:white;"><b>Info Propriétaire</b></div>
+  <div class="card-body">
+            <p> <b>Nom</b> : {{ appartement.getProprietaire.getNomPe() }}</p>
+            <p> <b>Prenom</b> : {{ appartement.getProprietaire.getPrenomPe() }}</p>
+            <p> <b>Adresse</b> : {{ appartement.getProprietaire.getAdressePe() }}, {{ appartement.getProprietaire.getNomVille() }}, {{ appartement.getProprietaire.getCodePostal() }}</p>
+            <p> <b>Tel</b> : 0{{ appartement.getProprietaire.getTelephonePe() }}</p>
+            <p> <b>Email</b> : {{ appartement.getProprietaire.getEmail() }}</p>
+    </div>
+</div>
+</div><br>
+
+              <div class="col-md-4">
+        <div class="card">
+  <div class="card-header bg-info" style="color:white;"><b>Info Locataire</b></div>
+  <div class="card-body"><p> 
+
+            {% if appartement.getLocataire() != NULL %}
+    
+            <p> <b>Nom</b> : {{ appartement.getLocataire.getNomPe() }}</p>
+            <p> <b>Prenom</b> : {{ appartement.getLocataire.getPrenomPe() }}</p>
+            <p> <b>Adresse</b> : {{ appartement.getLocataire.getAdressePe() }}, {{ appartement.getLocataire.getNomVille() }}, {{ appartement.getLocataire.getCodePostal() }}</p>
+            <p> <b>Tel</b> : 0{{ appartement.getLocataire.getTelephonePe() }}</p>
+            <p> <b>Email</b> : {{ appartement.getLocataire.getEmail() }}</p>
+            <p> <b>N° banque</b> : {{ appartement.getLocataire.getTelBanque() }}</p>
+            <p> <b>RIB</b> : {{ appartement.getLocataire.getNumCpteBanque() }}</p>
+            </div>
+</div>
+</div>
+            {% else %}
+    
+            <p>Aucun locataire</p>
+            
+  </div>
+</div>
+</div> {% endif %} <br>
+    </div>
+</div><br>
+
+<center><a class="btn btn-primary" href="/voirLesAppartements">Retour</a></center>
+
+</div>
+
+
+
+</div>
+{% endblock %}

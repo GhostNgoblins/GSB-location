@@ -1,0 +1,46 @@
+{% extends 'navClient.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    a.blanc { color:white; }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Ajouter Visite</h1>
+
+
+<form class="form-horizontal" action="/validAjoutV">
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="nom">Appartement :</label>
+        <div class="col-sm-7">
+        <select class="form-control" name="nom">
+        {% for appart in apparts %}
+        <option>{{ appart.getNom() }}</option>
+        {% endfor %}
+        </select>
+        </div>
+    </div>
+ <div class="form-group">
+      <label class="control-label col-sm-3" for="date">Date de Visite :</label>
+      <div class="col-sm-7">
+        <input type="date" class="form-control" id="date"  name="date">
+      </div>
+    </div>
+ 
+    
+    </br>
+    <input type="hidden" value={{ app.user.getId()}} name="id" id="id">
+
+      </div>
+        <center><button type="submit" class="btn btn-success">Valider</button></center>
+        </form>
+        </br>
+
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'navProprietaire.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 600px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .titre {  }
+</style>
+
+<div class="example-wrapper">
+<form method="post" action="/valideModificationAppartement">
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label"><b>Nom</b></label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control form-control-lg" name="nom" value="{{ appartement.getNom() }}" placeholder="champs obligatoire">
+        </div>
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Rue</b></label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="rue" value="{{ appartement.getRue() }}" placeholder="champs obligatoire">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Prix location</b></label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="prixlocation" value="{{ appartement.getPrixLoc() }}" placeholder="champs obligatoire">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label"><b>Prix charges</b></label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control form-control-lg" name="prixcharges" value="{{ appartement.getPrixCharges() }}" placeholder="champs obligatoire">
+    </div>
+  </div>
+    
+  </div>
+  <center>
+  <input type="hidden" name="id" value="{{ appartement.getId() }}">
+  <input type="submit" value="Valider" class="btn btn-primary" name="valider">
+  </center>
+</form>
+</div><br>
+
+</div>
+{% endblock %}

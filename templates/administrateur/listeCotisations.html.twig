@@ -1,0 +1,48 @@
+{% extends 'navAdmin.html.twig' %}
+
+{% block title %}Infos Appartement{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1500px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class = "example-wrapper">
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>coordonnées</th>
+        <th>cotisations totales</th>
+        <th>Infos</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for proprietaire in proprietaires %}
+      <tr>
+      
+        <td>{{ proprietaire.getNomPe() }} {{ proprietaire.getPrenomPe() }}</td>
+        <td>{{ proprietaire.getEmail() }}</td>
+        <td>
+            {% set sommeCotisation = 0 %}
+            {% for appart in proprietaire.getAppartements() %}
+            {% set sommeCotisation = sommeCotisation + (appart.getPrixLoc()*30 + appart.getPrixCharges()*30)*0.07 %}
+            {% endfor %}
+            <p>{{ sommeCotisation }} € / mois</p>
+        </td>
+        <td>
+          <form method="post" action="/voirLesInfosCotisations">
+            <input type="hidden" name="id" value="{{ proprietaire.getId() }}">
+            <input type="submit" value="info" class="btn btn-info">
+          </form>
+        </td>
+      </tr>
+
+      {% endfor %}
+      </tbody>
+  </table>
+
+</div>
+{% endblock %}

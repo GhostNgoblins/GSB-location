@@ -1,0 +1,40 @@
+{% extends 'navClient.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    a.blanc { color:white; }
+</style>
+
+<div class="example-wrapper">
+
+ 
+<h1>Devenir Locataire</h1>
+    </br></br>
+
+
+<form method="post" action="/validerLocataire">
+<div class="form-group">
+      <label class="control-label col-sm-3" for="nomA">Appartement :</label>
+        <div class="col-sm-7">
+        <select class="form-control" name="nomA">
+        {% for appart in apparts %}
+        <option>{{ appart.getNom() }}</option>
+        {% endfor %}
+        </select>
+        </div>
+    </div>
+    <input type="hidden" value="{{ app.user.getId() }}" name="id">
+   <center><td><input type="submit" value="Choisir" class="btn btn-info" name="Choisir"/></td><center>
+   </form>
+   
+
+
+
+</div>
+
+
+{% endblock %}

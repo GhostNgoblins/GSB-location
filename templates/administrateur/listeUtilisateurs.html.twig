@@ -1,0 +1,188 @@
+{% extends 'navAdmin.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1500px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+<h1>Liste de tous les utilisateurs :</h1><br>
+
+<center>
+<a href="#prop" class="btn btn-info">Propriétaires</a>
+<a href="#client" class="btn btn-info">Clients</a>
+<a href="#admin" class="btn btn-info">Administrateurs</a><br><br>
+</center>
+
+<section id="prop">
+<h3>Propriétaires :</h3><br>
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Login</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">téléphone</th>
+      <th scope="col">téléphone banque</th>
+      <th scope="col">Type</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for proprietaire in proprietaires %}
+    
+    <tr>
+        <td>
+            <p>{{ proprietaire.getPrenomPe() }}</p>
+        </td>
+        <td>
+            <p>{{ proprietaire.getNomPe() }}</p>
+        </td>
+        <td>
+            <p>{{ proprietaire.getUsername() }}</p>
+        </td>
+        <td>
+            <p>{{ proprietaire.getAdressePe() }}</p>
+        </td>
+        <td>
+            <p>0{{ proprietaire.getTelephonePe() }}</p>
+        </td>
+        <td>
+            <p>0{{ proprietaire.getTelBanque() }}</p>
+        </td>
+        <td>
+            <p>{{ proprietaire.getType() }}</p>
+        </td>
+        <td>
+            <form action="/supprimerPersonne" method="post">
+                <input type="hidden" name="login" value={{ proprietaire.getUsername }}>
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    
+
+  </tbody>
+</table>
+</section>
+
+<section id="client">
+
+<h3>Clients :</h3><br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Login</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">téléphone</th>
+      <th scope="col">téléphone banque</th>
+      <th scope="col">Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for client in clients %}
+    
+    <tr>
+        <td>
+            <p>{{ client.getPrenomPe() }}</p>
+        </td>
+        <td>
+            <p>{{ client.getNomPe() }}</p>
+        </td>
+        <td>
+            <p>{{ client.getUsername() }}</p>
+        </td>
+        <td>
+            <p>{{ client.getAdressePe() }}</p>
+        </td>
+        <td>
+            <p>0{{ client.getTelephonePe() }}</p>
+        </td>
+        <td>
+            <p>0{{ client.getTelBanque() }}</p>
+        </td>
+        <td>
+            <p>{{ client.getType() }}</p>
+        </td>
+        <td>
+            <form action="/supprimerPersonne" method="post">
+                <input type="hidden" name="login" value={{ client.getUsername }}>
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    
+
+  </tbody>
+</table>
+</section>
+
+<section id="admin">
+
+<h3>Administrateurs :</h3><br>
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Login</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">téléphone</th>
+      <th scope="col">#</th>
+      <th scope="col">Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for admin in administrateurs %}
+    
+    <tr>
+        <td>
+            <p>{{ admin.getPrenomPe() }}</p>
+        </td>
+        <td>
+            <p>{{ admin.getNomPe() }}</p>
+        </td>
+        <td>
+            <p>{{ admin.getUsername() }}</p>
+        </td>
+        <td>
+            <p>{{ admin.getAdressePe() }}</p>
+        </td>
+        <td>
+            <p>{{ admin.getTelephonePe() }}</p>
+        </td>
+        <td>
+            <p>{{ admin.getTelBanque() }}</p>
+        </td>
+        <td>
+            <p>{{ admin.getType() }}</p>
+        </td>
+        <td>
+        {% if app.user.getUsername != admin.getUsername %}
+            <form action="/supprimerPersonne" method="post">
+                <input type="hidden" name="login" value={{ admin.getUsername }}>
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form>
+        {% endif %}    
+        </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+</section>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'navProprietaire.html.twig' %}
+
+{% block title %}GSBloc +{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 600px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .titre {  }
+</style>
+
+<div class="example-wrapper">
+    
+
+<table class="table table-hover">
+
+<thead>
+<tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Info</th>
+</tr>
+</thead>
+
+{% for appartement in app.user.getAppartements() %}
+
+<tr>
+
+<td>
+
+<p>{{ appartement.getNom() }}</p>
+
+</td>
+
+<td>
+<form method="post" action = "/voirMonAppartement">
+
+<input type='hidden' name="id" value={{ appartement.getId() }}> 
+<input type='submit' value='info' class="btn btn-info">
+</form></td>
+<TD><form action="/modificationAppartement" method="post">
+                <input type="hidden" name="id" value={{ appartement.getId() }}>
+                <input type="submit" value="modifier" class="btn btn-success">
+            </form></TD>
+<TD><form action="/supprimerAppartementPro" method="post">
+                <input type="hidden" name="id" value={{ appartement.getId() }}>
+                <input type="submit" value="supprimer" class="btn btn-danger">
+            </form></TD>
+            
+</tr>
+{% endfor %}
+</table>
+
+
+</div>
+{% endblock %}
